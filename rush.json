@@ -1016,6 +1016,12 @@
       "shouldPublish": true
     },
     {
+      "packageName": "@rushstack/hashed-folder-copy-plugin",
+      "projectFolder": "webpack/hashed-folder-copy-plugin",
+      "reviewCategory": "libraries",
+      "shouldPublish": true
+    },
+    {
       "packageName": "@rushstack/localization-plugin",
       "projectFolder": "webpack/localization-plugin",
       "reviewCategory": "libraries",
