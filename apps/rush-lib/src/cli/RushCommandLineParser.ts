@@ -214,6 +214,8 @@ export class RushCommandLineParser extends CommandLineParser {
     } catch (error) {
       this._reportErrorAndSetExitCode(error as Error);
     }
+
+    await this.telemetry?.ensureFlushedAsync();
   }
 
   private _normalizeOptions(options: Partial<IRushCommandLineParserOptions>): IRushCommandLineParserOptions {
@@ -226,7 +228,7 @@ export class RushCommandLineParser extends CommandLineParser {
 
   private async _wrapOnExecuteAsync(): Promise<void> {
     if (this.rushConfiguration) {
-      this.telemetry = new Telemetry(this.rushConfiguration);
+      this.telemetry = new Telemetry(this.rushConfiguration, this.rushSession);
     }
 
     await super.onExecute();
