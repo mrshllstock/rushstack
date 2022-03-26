@@ -34,7 +34,6 @@ import { ShellOperationRunnerPlugin } from '../../logic/operations/ShellOperatio
 import { Selection } from '../../logic/Selection';
 import { Event } from '../../api/EventHooks';
 import { ProjectChangeAnalyzer } from '../../logic/ProjectChangeAnalyzer';
-import { TelemetryResult } from '../../logic/Telemetry';
 
 /**
  * Constructor parameters for BulkScriptAction.
@@ -497,7 +496,7 @@ export class PhasedScriptAction extends BaseScriptAction<IPhasedCommandConfig> {
       this.parser.telemetry.log({
         name: this.actionName,
         duration: stopwatch.duration,
-        result: success ? TelemetryResult.Succeeded : TelemetryResult.Failed,
+        result: success ? 'Succeeded' : 'Failed',
         extraData
       });
     }
