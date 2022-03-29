@@ -84,7 +84,7 @@ export class RushLifecycleHooks {
   /**
    * A hook to allow plugins to hook custom logic to process telemetry data.
    */
-  public flushTelemetry: AsyncParallelHook<[ITelemetryData[]]> = new AsyncParallelHook(
+  public flushTelemetry: AsyncParallelHook<[ReadonlyArray<ITelemetryData>]> = new AsyncParallelHook(
     ['telemetryData'],
     'flushTelemetry'
   );
