@@ -80,5 +80,6 @@
     }
   },
 
-  "testMode": false
+  "testMode": false,
+  "preserveEnumOrder": false
 }

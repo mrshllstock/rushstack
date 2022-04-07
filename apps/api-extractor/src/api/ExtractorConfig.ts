@@ -163,6 +163,7 @@ interface IExtractorConfigParameters {
   newlineKind: NewlineKind;
   messages: IExtractorMessagesConfig;
   testMode: boolean;
+  preserveEnumMemberOrder: boolean;
 }
 
 /**
@@ -279,6 +280,9 @@ export class ExtractorConfig {
   /** {@inheritDoc IConfigFile.testMode} */
   public readonly testMode: boolean;
 
+  /** {@inheritDoc IConfigFile.preserveEnumMemberOrder} */
+  public readonly preserveEnumMemberOrder: boolean;
+
   private constructor(parameters: IExtractorConfigParameters) {
     this.projectFolder = parameters.projectFolder;
     this.packageJson = parameters.packageJson;
@@ -305,6 +309,7 @@ export class ExtractorConfig {
     this.newlineKind = parameters.newlineKind;
     this.messages = parameters.messages;
     this.testMode = parameters.testMode;
+    this.preserveEnumMemberOrder = parameters.preserveEnumMemberOrder;
   }
 
   /**

@@ -103,6 +103,7 @@ export function ApiItemContainerMixin<TBaseClass extends IApiItemConstructor>(
     public readonly [_members]: ApiItem[];
     public [_membersSorted]: boolean;
     public [_membersByContainerKey]: Map<string, ApiItem>;
+    public preserveEnumMemberOrder: boolean;
 
     // For members of this container that extend ApiNameMixin, this stores the list of members with a given name.
     // Examples include merged declarations, overloaded functions, etc.
@@ -143,7 +144,7 @@ export function ApiItemContainerMixin<TBaseClass extends IApiItemConstructor>(
 
     /** @override */
     public get members(): ReadonlyArray<ApiItem> {
-      if (!this[_membersSorted]) {
+      if (!this[_membersSorted] || !this.preserveEnumMemberOrder) {
         LegacyAdapters.sortStable(this[_members], (x, y) => x.getSortKey().localeCompare(y.getSortKey()));
         this[_membersSorted] = true;
       }
