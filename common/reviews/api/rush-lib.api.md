@@ -448,7 +448,7 @@ export interface IRushSessionOptions {
 
 // @beta (undocumented)
 export interface ITelemetryData {
-    readonly duration: number;
+    readonly durationInSeconds: number;
     // (undocumented)
     readonly extraData?: {
         [key: string]: string;
