@@ -267,6 +267,7 @@ export class ApiReportGenerator {
 
     let recurseChildren: boolean = true;
     let sortChildren: boolean = false;
+    let preserveEnumMemberOrder: boolean = false;
 
     switch (span.kind) {
       case ts.SyntaxKind.JSDocComment:
@@ -401,7 +402,7 @@ export class ApiReportGenerator {
             astDeclaration
           );
 
-          if (sortChildren) {
+          if (sortChildren && !preserveEnumMemberOrder) {
             span.modification.sortChildren = true;
             child.modification.sortKey = Collector.getSortKeyIgnoringUnderscore(
               childAstDeclaration.astSymbol.localName
