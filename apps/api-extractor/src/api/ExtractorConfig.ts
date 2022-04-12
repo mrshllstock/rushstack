@@ -153,6 +153,7 @@ interface IExtractorConfigParameters {
   apiJsonFilePath: string;
   rollupEnabled: boolean;
   untrimmedFilePath: string;
+  alphaTrimmedFilePath: string;
   betaTrimmedFilePath: string;
   publicTrimmedFilePath: string;
   omitTrimmingComments: boolean;
@@ -246,6 +247,8 @@ export class ExtractorConfig {
   public readonly rollupEnabled: boolean;
   /** {@inheritDoc IConfigDtsRollup.untrimmedFilePath} */
   public readonly untrimmedFilePath: string;
+  /** {@inheritDoc IConfigDtsRollup.alphaTrimmedFilePath} */
+  public readonly alphaTrimmedFilePath: string;
   /** {@inheritDoc IConfigDtsRollup.betaTrimmedFilePath} */
   public readonly betaTrimmedFilePath: string;
   /** {@inheritDoc IConfigDtsRollup.publicTrimmedFilePath} */
@@ -299,6 +302,7 @@ export class ExtractorConfig {
     this.apiJsonFilePath = parameters.apiJsonFilePath;
     this.rollupEnabled = parameters.rollupEnabled;
     this.untrimmedFilePath = parameters.untrimmedFilePath;
+    this.alphaTrimmedFilePath = parameters.alphaTrimmedFilePath;
     this.betaTrimmedFilePath = parameters.betaTrimmedFilePath;
     this.publicTrimmedFilePath = parameters.publicTrimmedFilePath;
     this.omitTrimmingComments = parameters.omitTrimmingComments;
@@ -616,6 +620,13 @@ export class ExtractorConfig {
           currentConfigFolderPath
         );
       }
+      if (configFile.dtsRollup.alphaTrimmedFilePath) {
+        configFile.dtsRollup.alphaTrimmedFilePath = ExtractorConfig._resolveConfigFileRelativePath(
+          'alphaTrimmedFilePath',
+          configFile.dtsRollup.alphaTrimmedFilePath,
+          currentConfigFolderPath
+        );
+      }
       if (configFile.dtsRollup.betaTrimmedFilePath) {
         configFile.dtsRollup.betaTrimmedFilePath = ExtractorConfig._resolveConfigFileRelativePath(
           'betaTrimmedFilePath',
@@ -917,6 +928,7 @@ export class ExtractorConfig {
       let rollupEnabled: boolean = false;
       let untrimmedFilePath: string = '';
       let betaTrimmedFilePath: string = '';
+      let alphaTrimmedFilePath: string = '';
       let publicTrimmedFilePath: string = '';
       let omitTrimmingComments: boolean = false;
 
@@ -925,6 +937,11 @@ export class ExtractorConfig {
         untrimmedFilePath = ExtractorConfig._resolvePathWithTokens(
           'untrimmedFilePath',
           configObject.dtsRollup.untrimmedFilePath,
+          tokenContext
+        );
+        alphaTrimmedFilePath = ExtractorConfig._resolvePathWithTokens(
+          'alphaTrimmedFilePath',
+          configObject.dtsRollup.alphaTrimmedFilePath,
           tokenContext
         );
         betaTrimmedFilePath = ExtractorConfig._resolvePathWithTokens(
@@ -968,6 +985,7 @@ export class ExtractorConfig {
         apiJsonFilePath,
         rollupEnabled,
         untrimmedFilePath,
+        alphaTrimmedFilePath,
         betaTrimmedFilePath,
         publicTrimmedFilePath,
         omitTrimmingComments,
