@@ -212,7 +212,7 @@ export class Collector {
     );
     if (badSourceFile) {
       this.messageRouter.addAnalyzerIssueForPosition(
-        ExtractorMessageId.WrongInputFileType,
+        ExtractorMessageId.NotDtsFileExtension,
         'Incorrect file type; API Extractor expects to analyze compiler outputs with the .d.ts file extension. ' +
           'Troubleshooting tips: https://api-extractor.com/link/dts-error',
         badSourceFile,
